@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ostoy
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: ostoy
+    server: 'CHANGE_ME_SERVER_URL'
+  project: default
+  source:
+    path: app
+    repoURL: 'https://github.com/tosin2013/ostoy.git'
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
